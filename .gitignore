@@ -1,0 +1,6 @@
+.DS_Store
+/.idea
+/data
+/src/vendor
+/src/.env
+/srs/.editorconfig

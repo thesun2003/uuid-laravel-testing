@@ -1,0 +1,73 @@
+services:
+  php-fpm:
+    container_name: php-fpm
+    image: "shinsenter/php:8.3-fpm"
+    volumes:
+      - ${SRC_PATH}:/var/www/html
+    depends_on:
+      - db-mysql-uuid-binary
+      - db-mysql-uuid-string
+      - db-mysql-ulid-string
+      - db-mysql-id-integer
+    networks:
+      default:
+
+  db-mysql-uuid-string:
+    image: mysql:8.4
+    container_name: db-mysql-uuid-string
+    ports:
+      - '33306:3306'
+    volumes:
+      - ${DATA_PATH}/mysql/uuid-string:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    networks:
+      default:
+
+  db-mysql-uuid-binary:
+    image: mysql:8.4
+    container_name: db-mysql-uuid-binary
+    ports:
+      - '33307:3306'
+    volumes:
+      - ${DATA_PATH}/mysql/uuid-binary:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    networks:
+      default:
+
+  db-mysql-ulid-string:
+    image: mysql:8.4
+    container_name: db-mysql-ulid-string
+    ports:
+      - '33308:3306'
+    volumes:
+      - ${DATA_PATH}/mysql/ulid-string:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    networks:
+      default:
+
+  db-mysql-id-integer:
+    image: mysql:8.4
+    container_name: db-mysql-id-integer
+    ports:
+      - '33309:3306'
+    volumes:
+      - ${DATA_PATH}/mysql/id-integer:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    networks:
+      default:
