@@ -2,7 +2,6 @@
 
 help_output() {
     echo "Usage: $0 {build|start|stop}"
-    echo "  build         - Build images for testing environment"
     echo "  up            - Start testing environment"
     echo "  down          - Stop testing environment"
     echo "  help          - Display this help message"
@@ -21,10 +20,6 @@ SRC_PATH="$ROOT_PATH/src"
 DATA_PATH="$ROOT_PATH/data"
 set +a
 
-build() {
-    docker compose --project-name "uuid-laravel-testing" -f "$COMPOSE_PATH" build
-}
-
 up() {
     docker compose --project-name "uuid-laravel-testing" -f "$COMPOSE_PATH" up -d --remove-orphans
 }
@@ -39,9 +34,6 @@ case "$1" in
     ;;
   down)
     down
-    ;;
-  build)
-    build
     ;;
   *)
     help_output
