@@ -32,13 +32,16 @@ return new class extends Migration
         Schema::create($this->getTableName('products'), function (Blueprint $table) {
             $table->binary('id', 16, true)->unique();
             $table->string('name');
+            $table->string('description');
+            $table->string('image_url');
+            $table->integer('price');
             $table->timestamps();
         });
 
         Schema::create($this->getTableName('orders'), function (Blueprint $table) {
             $table->binary('id', 16, true)->unique();
             $table->string('name');
-            $table->integer('price');
+            $table->integer('amount');
             $table->binary('user_id', 16, true)->unique();
             $table->foreign('user_id')->references('id')->on($this->getTableName('users'))->onDelete('cascade');
             $table->timestamps();
